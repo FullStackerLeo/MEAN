@@ -1,0 +1,132 @@
+<!-- tab-sections.component.html -->
+<div class="container">
+    <h3 class="h4 text-success font-weight-bold mb-4">Transactions</h3>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <!-- <div>
+                <pre>{{ filteredTransactions | json }}</pre>
+            </div> -->
+            <!-- Tabs with icons -->
+            <div class="mb-3">
+                <small class="text-uppercase font-weight-bold">Transaction List</small>
+            </div>
+            <div class="custom-tab-content flex-column flex-md-row">
+                <ul ngbNav #nav="ngbNav" [(activeId)]="active1" class="nav nav-pills justify-content-center" type="pills">
+                    <li class="nav-item" [ngbNavItem]="1">
+                        <a class="nav-link" ngbNavLink (click)="filterTransactions('COMPLETED')">
+                            <i class="ni ni-cloud-upload-96 mr-2"></i> COMPLETED</a>
+                        <ng-template ngbNavContent>
+                            <div class="tab-content">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Date</th>
+                                            <th>Comments</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let transaction of filteredTransactions">
+                                            <td>{{ transaction.id }}</td>
+                                            <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
+                                            <td>{{ transaction.Comments }}</td>
+                                            <td><a href="#" (click)="loadTransactionDetails(transaction.id)">View</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ng-template>
+                    </li>
+                    <li class="nav-item" [ngbNavItem]="2">
+                        <a class="nav-link" ngbNavLink (click)="filterTransactions('IN PROGRESS')">
+                            <i class="ni ni-bell-55 mr-2"></i> IN PROGRESS</a>
+                        <ng-template ngbNavContent>
+                            <div class="tab-content">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Date</th>
+                                            <th>Comments</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let transaction of filteredTransactions">
+                                            <td>{{ transaction.id }}</td>
+                                            <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
+                                            <td>{{ transaction.Comments }}</td>
+                                            <td><a href="#" (click)="loadTransactionDetails(transaction.id)">View</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ng-template>
+                    </li>
+                    <li class="nav-item" [ngbNavItem]="3">
+                        <a class="nav-link" ngbNavLink (click)="filterTransactions('REJECTED')">
+                            <i class="ni ni-calendar-grid-58 mr-2"></i> REJECTED</a>
+                        <ng-template ngbNavContent>
+                            <div class="tab-content">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Date</th>
+                                            <th>Comments</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let transaction of filteredTransactions">
+                                            <td>{{ transaction.id }}</td>
+                                            <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
+                                            <td>{{ transaction.Comments }}</td>
+                                            <td><a href="#" (click)="loadTransactionDetails(transaction.id)">View</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ng-template>
+                    </li>
+                </ul>
+            </div>
+
+            <div [ngbNavOutlet]="nav" class="custom-tab-content"></div>
+        </div>
+        <div class="col-lg-6 mt-5 mt-lg-0">
+            <div class="mb-3">
+                <small class="text-uppercase font-weight-bold">Transaction Details</small>
+            </div>
+            <div class="custom-tab-content flex-column flex-md-row">
+                <ul ngbNav #nav1="ngbNav" [(activeId)]="active" class="nav nav-pills justify-content-center" type="pills">
+                    <li class="nav-item" [ngbNavItem]="1">
+                        <ng-template ngbNavContent>
+                            <div class="tab-content">
+                                <p><strong>ID:</strong> {{ transactionDetails.id }}</p>
+                                <p><strong>Date:</strong> {{ transactionDetails.date | date: 'dd-MM-yyyy' }}</p>
+                                <p><strong>Amount:</strong> {{ transactionDetails.Amount }} {{ transactionDetails.CurrencyCd }}</p>
+                                
+                                <h4>Sender Details</h4>
+                                <p><strong>ID Number:</strong> {{ transactionDetails.sender?.IDNumber }}</p>
+                                <p><strong>Name:</strong> {{ transactionDetails.sender?.firstName }} {{ transactionDetails.sender?.lastName }}</p>
+                                <p><strong>Date of Birth:</strong> {{ transactionDetails.sender?.dateOfBirth | date: 'dd-MM-yyyy' }}</p>
+                                
+                                <h4>Recipient Details</h4>
+                                <p><strong>Account Number:</strong> {{ transactionDetails.recipient?.accountNumber }}</p>
+                                <p><strong>Name:</strong> {{ transactionDetails.recipient?.firstName }} {{ transactionDetails.recipient?.lastName }}</p>
+                                <p><strong>Email:</strong> {{ transactionDetails.recipient?.email }}</p>
+                                <p><strong>Bank:</strong> {{ transactionDetails.recipient?.bank }}</p>
+                                
+                                <p><strong>Comments:</strong> {{ transactionDetails.Comments }}</p>
+                                <p><strong>Status:</strong> {{ transactionDetails.status }}</p>                                
+                            </div>
+                        </ng-template>
+                    </li>
+                </ul>
+            </div>
+            <div [ngbNavOutlet]="nav1" class="custom-tab-content"></div>
+        </div>
+    </div>
+</div>
